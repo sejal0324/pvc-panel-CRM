@@ -1,0 +1,101 @@
+/* Extends ClientDetails.css — lead-specific overrides only */
+@import './ClientDetails.css';
+
+.score-chip-lg {
+     display: inline-block;
+     padding: 6px 16px;
+     border-radius: 20px;
+     font-size: 1.1rem;
+     font-weight: 800;
+     background: #eff6ff;
+     color: #1d4ed8;
+     border: 1px solid #bfdbfe;
+}
+
+.reasons-list {
+     margin: 8px 0 0 0;
+     padding-left: 20px;
+     display: flex;
+     flex-direction: column;
+     gap: 6px;
+}
+
+.reasons-list li {
+     font-size: 0.9rem;
+     color: var(--text-primary);
+     line-height: 1.4;
+}
+
+.approve-action-btn {
+     background: #16a34a;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.approve-action-btn:hover:not(:disabled) {
+     background: #15803d;
+}
+
+.reject-action-btn {
+     background: #dc2626;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.reject-action-btn:hover:not(:disabled) {
+     background: #b91c1c;
+}
+
+.approve-action-btn:disabled,
+.reject-action-btn:disabled {
+     opacity: 0.4;
+     cursor: not-allowed;
+}
+
+/* Badge colours (shared with dashboard) */
+.badge-qualified {
+     background: #dcfce7;
+     color: #166534;
+}
+
+.badge-review {
+     background: #fef9c3;
+     color: #854d0e;
+}
+
+.badge-disqualified {
+     background: #fee2e2;
+     color: #991b1b;
+}
+
+.badge-approved {
+     background: #dcfce7;
+     color: #166534;
+}
+
+.badge-rejected {
+     background: #fee2e2;
+     color: #991b1b;
+}
+
+.badge-pending {
+     background: #f1f5f9;
+     color: #475569;
+}
+
+.badge-default {
+     background: #f3f4f6;
+     color: #374151;
+}
+
+.dashboard-error {
+     background: #fee2e2;
+     color: #991b1b;
+     border: 1px solid #fecaca;
+     border-radius: 6px;
+     padding: 12px 16px;
+     font-size: 0.9rem;
+     font-weight: 500;
+}

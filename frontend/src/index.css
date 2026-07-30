@@ -1,0 +1,33 @@
+:root {
+  --primary-navy: #001f3f;
+  --secondary-navy: #003366;
+  --accent-blue: #007bff;
+  --bg-dashboard: #f4f7f6;
+  --card-bg: #ffffff;
+  --border-color: #d1d5db;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --success-green: #22c55e;
+  --alert-red: #ef4444;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-dashboard);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
