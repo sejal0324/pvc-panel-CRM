@@ -43,41 +43,74 @@ This platform is designed to help an organization:
 
 ## Architectural Flow
 
-The application follows a clean layered architecture:
+The application follows a layered, event-driven CRM architecture designed for clarity and maintainability:
 
-1. Frontend Layer
-   - React components render the user interface.
-   - Route-based navigation controls access to dashboards and detail pages.
-   - API modules communicate with the backend using Axios.
+```text
+┌─────────────────────────────────────────────────────────────┐
+│                     Frontend (React + Vite)                │
+│  AuthForm  │  ClientDashboard  │  LeadDashboard  │  Tasks  │
+└───────────────────────────────┬─────────────────────────────┘
+                                │
+                                │ HTTP / Axios
+                                ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    Backend API (Express.js)                 │
+│  Routes  →  Controllers  →  Services  →  Repositories     │
+└───────────────────────────────┬─────────────────────────────┘
+                                │
+                                │ SQL / PostgreSQL
+                                ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    Database Layer (PostgreSQL)              │
+│  users  │  investors  │  client  │  lead  │  task  │  zone │
+└─────────────────────────────────────────────────────────────┘
+```
 
-2. API Layer
-   - Express routes expose resources for authentication, clients, leads, and tasks.
-   - Middleware validates JWT tokens before protected routes are accessed.
+### Request Flow
 
-3. Service Layer
-   - Business logic is handled in service modules.
-   - Lead qualification, client management, authentication, and task operations are isolated here.
-
-4. Repository Layer
-   - Repository files handle all PostgreSQL query logic.
-   - This keeps database interaction separate from business rules.
-
-5. Data Layer
-   - PostgreSQL stores users, investors, clients, leads, tasks, and zone assignment data.
-
-### Request Flow Example
-
-Client action -> React component -> API call -> Express route -> Controller -> Service -> Repository -> PostgreSQL
+```text
+User Action
+  ↓
+React Component
+  ↓
+API Call (Axios)
+  ↓
+Express Route
+  ↓
+Controller
+  ↓
+Service Layer
+  ↓
+Repository Layer
+  ↓
+PostgreSQL Database
+```
 
 ### Lead Discovery Flow
 
-Lead discovery is orchestrated through a lightweight engine pipeline:
+```text
+Lead Discovery Request
+  ↓
+Discovery Engine
+  ↓
+Data Normalization
+  ↓
+Qualification Engine
+  ↓
+Lead Service
+  ↓
+PostgreSQL Storage
+  ↓
+Approval Workflow → Client Conversion
+```
 
-- discovery engine gathers potential leads
-- normalization prepares structured data
-- qualification engine scores the lead
-- service layer saves the lead to the database
-- approval workflow can later convert a lead into a client
+### Core Architectural Layers
+
+- Frontend Layer: renders dashboards, forms, and navigation for users
+- API Layer: exposes authenticated endpoints for clients, leads, tasks, and auth
+- Service Layer: contains business rules such as validation, lead scoring, and task creation
+- Repository Layer: handles all database queries and persistence operations
+- Data Layer: stores business records and operational relationships
 
 ## Project Structure
 
@@ -247,3 +280,4 @@ Possible next steps for the product include:
 ## License
 
 This project is intended for internal business use and is currently distributed as a development prototype.
+
